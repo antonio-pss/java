@@ -1,10 +1,11 @@
 package app;
 
+import view.SchoolView;
 import view.VehicleView;
 
 public class Main {
     public static void main(String[] args) {
-        VehicleView vehicleView = new VehicleView();
-        vehicleView.menu();
+        SchoolView schoolView = new SchoolView();
+        schoolView.menu();
     }
 }

@@ -1,5 +1,7 @@
 package view;
 
+import controller.CourseController;
+import controller.StudentController;
 import model.Course;
 import model.Student;
 
@@ -7,11 +9,11 @@ import java.util.Scanner;
 
 public class SchoolView {
     Scanner scanner = new Scanner(System.in);
+    StudentController studentController = new StudentController();
+    CourseController courseController = new CourseController();
 
     public void menu() {
         int option;
-        StudentController;
-        CourseController;
 
         do {
             Student student = new Student();
@@ -26,10 +28,10 @@ public class SchoolView {
 
             switch (option) {
                 case 1:
-                    course.menu();
+                    courseMenu();
                     break;
                 case 2:
-                    student.menu();
+                    studentMenu();
                 case 0:
                     break;
                 default:
@@ -43,32 +45,81 @@ public class SchoolView {
         int option;
 
         do {
+            Student student = new Student();
+            Course course = new Course();
+
             System.out.println("\nMenu: ");
             System.out.println("1. Add Student");
             System.out.println("2. Edit Student");
             System.out.println("3. Register Course");
             System.out.println("4. Cancel Course");
             System.out.println("5. List Courses");
+            System.out.println("6. List Students");
             System.out.println("0. Back");
 
             System.out.print("Enter your option: ");
             option = scanner.nextInt();
+            scanner.nextLine();
 
             switch(option){
                 case 1:
-                    //add
+                    System.out.print("Student ID: ");
+                    student.setId(scanner.nextLine());
+                    System.out.print("Student Name: ");
+                    student.setName(scanner.nextLine());
+                    studentController.addStudent(student);
                     break;
                 case 2:
-                    //edit
+                    System.out.print("Student ID: ");
+                    student.setId(scanner.nextLine());
+                    if (studentController.getStudent(student.getId()) != null) {
+                        System.out.print("Student new Name: ");
+                        student.setName(scanner.nextLine());
+                        studentController.editStudent(student);
+                        break;
+                    }
+                    System.out.print("Student not Found!");
                     break;
                 case 3:
-                    //register
+                    scanner.nextLine();
+                    System.out.print("Student ID: ");
+                    student.setId(scanner.nextLine());
+                    if ((student = studentController.getStudent(student.getId())) == null) {
+                        System.out.println("Student does not exist");
+                        break;
+                    }
+                    System.out.print("Course ID: ");
+                    course.setId(scanner.nextLine());
+                    if ((course = courseController.getCourse(course.getId())) == null) {
+                        System.out.println("Course does not exist");
+                        break;
+                    }
+                    studentController.registerCourse(course, student);
                     break;
                 case 4:
-                    //cancel
+                    System.out.print("Student ID: ");
+                    student.setId(scanner.nextLine());
+                    if (studentController.getStudent(student.getId()) == null) {
+                        System.out.println("Student does not exist");
+                        break;
+                    }
+                    System.out.print("Course ID: ");
+                    course.setId(scanner.nextLine());
+                    if (courseController.getCourse(course.getId()) == null) {
+                        System.out.println("Course does not exist");
+                        break;
+                    }
+                    studentController.cancelCourse(course.getId(), student.getId());
                     break;
                 case 5:
-                    //list course
+                    scanner.nextLine();
+                    System.out.print("Student ID: ");
+                    student.setId(scanner.nextLine());
+                    studentController.listCourses(student.getId());
+                    break;
+                case 6:
+                    studentController.listStudents();
+                    break;
                 case 0:
                     break;
                 default:
@@ -82,6 +133,7 @@ public class SchoolView {
         int option;
 
         do {
+            Course course = new Course();
             System.out.println("\nMenu: ");
             System.out.println("1. Add Course");
             System.out.println("2. Edit Course");
@@ -90,16 +142,33 @@ public class SchoolView {
 
             System.out.print("Enter your option: ");
             option = scanner.nextInt();
+            scanner.nextLine();
 
             switch(option){
                 case 1:
-                    //add
+                    System.out.print("Course ID: ");
+                    course.setId(scanner.nextLine());
+                    System.out.print("Course Name: ");
+                    course.setName(scanner.nextLine());
+                    System.out.print("Course Hours: ");
+                    course.setHours(scanner.nextLine());
+                    courseController.addCourse(course);
                     break;
                 case 2:
-                    //edit
+                    System.out.print("Course ID: ");
+                    course.setId(scanner.nextLine());
+                    if (courseController.getCourse(course.getId()) == null) {
+                        System.out.println("Course does not exist");
+                        break;
+                    }
+                    System.out.print("Course new Name: ");
+                    course.setName(scanner.nextLine());
+                    System.out.print("Course new Hours: ");
+                    course.setHours(scanner.nextLine());
+                    courseController.editCourse(course);
                     break;
                 case 3:
-                    //list
+                    courseController.listCourses();
                     break;
                 case 0:
                     break;

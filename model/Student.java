@@ -1,11 +1,18 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
     private String id;
     private String name;
     private List<Course> courses;
+
+    public Student() {
+        this.id = "";
+        this.name = "";
+        this.courses = new ArrayList<Course>();
+    }
 
     public String getId() {
         return id;

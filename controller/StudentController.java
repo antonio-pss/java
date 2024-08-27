@@ -18,6 +18,15 @@ public class StudentController {
         return false;
     }
 
+    public Student getStudent(String id){
+        for (Student student : students) {
+            if(student.getId().equals(id)){
+                return student;
+            }
+        }
+        return null;
+    }
+
     public void addStudent(Student student) {
         if (!idExist(student.getId())) {
             students.add(student);
@@ -27,10 +36,9 @@ public class StudentController {
         }
     }
 
-    public void editStudent(String id, Student newStudent) {
+    public void editStudent(Student newStudent) {
         for (Student student : students) {
-            if (student.getId().equals(id)) {
-                student.setId(newStudent.getId());
+            if (student.getId().equals(newStudent.getId())) {
                 student.setName(newStudent.getName());
                 System.out.println("Student edited");
                 return;
@@ -39,15 +47,8 @@ public class StudentController {
         System.out.println("Student not found");
     }
 
-    public void registerCourse(Course course, String studentId) {
-        for (Student student : students) {
-            if (student.getId().equals(studentId)) {
-                student.getCourses().add(course);
-                System.out.println("Course added");
-                return;
-            }
-        }
-        System.out.println("Student not found");
+    public void registerCourse(Course course, Student student) {
+        student.getCourses().add(course);
     }
 
     public void cancelCourse(String courseId, String studentId) {
@@ -69,8 +70,17 @@ public class StudentController {
         for (Student student : students) {
             if (student.getId().equals(studentId)) {
                 System.out.println(student.getCourses());
+                return;
             }
         }
         System.out.println("Student not found");
     }
+
+    public void listStudents() {
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+
+
 }

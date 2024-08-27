@@ -22,10 +22,21 @@ public class Course {
     }
 
     public String getHours() {
-        return hours;
+        return this.hours;
     }
 
     public void setHours(String hours) {
         this.hours = hours;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", hours='" + hours + '\'' +
+                '}';
+    }
+
+
 }
