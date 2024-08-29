@@ -1,7 +1,7 @@
 package absModel;
 
 public abstract class AbsPerson {
-    private String name;
+    public String name;
     private String contact;
     private String address;
 
