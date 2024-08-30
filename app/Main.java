@@ -1,7 +1,9 @@
 package app;
 
 import absModel.AbsForm;
-import model.*;
+import model.Circle;
+import model.Rect;
+import model.SubSquare;
 import view.Calc;
 import view.SecondWindow;
 

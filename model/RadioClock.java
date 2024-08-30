@@ -4,7 +4,6 @@ import inModel.InClock;
 import inModel.InRadio;
 
 import java.time.LocalTime;
-import java.util.Date;
 
 public class RadioClock implements InClock, InRadio {
     private LocalTime time;

@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.*;
-
 public class SubSquare extends Rect{
     public SubSquare(float side) {
         super(side, side);

@@ -4,9 +4,14 @@
 
 package view;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author etech
@@ -19,52 +24,112 @@ public class Calc extends JFrame {
     private boolean equalsNum() {
         String str = labelCalc.getText();
         str = String.valueOf(str.charAt(str.length() - 1));
-        if (str.equals("1") || str.equals("2") || str.equals("3") || str.equals("4") || str.equals("5") || str.equals("6") || str.equals("7") || str.equals("8") || str.equals("9")) {
+        if (str.equals("0") ||str.equals("1") || str.equals("2") || str.equals("3") || str.equals("4") || str.equals("5") || str.equals("6") || str.equals("7") || str.equals("8") || str.equals("9") || str.equals("²")) {
             return true;
         }
         return false;
     }
 
-    private void btn1(ActionEvent e) {
-        // TODO add your code here
-        labelCalc.setText(labelCalc.getText() + "1");
+    private double calc(double c1, double c2, String calc) {
+        if (Objects.equals(calc, "+")) {
+            return c1 + c2;
+        } else if (Objects.equals(calc, "-")) {
+            return c1 - c2;
+        } else if (Objects.equals(calc, "*")) {
+            return c1 * c2;
+        } else if (Objects.equals(calc, "/")) {
+            return c1 / c2;
+        } else if (Objects.equals(calc, "²")) {
+            return Math.pow(c1, 2);
+        }
+        return -1;
     }
 
-    private void btn2(ActionEvent e) {
-        // TODO add your code here
-        labelCalc.setText(labelCalc.getText() + "2");
+    private void whatCalc(List<String> tokens, String op) {
+        while(tokens.contains(op)) {
+            double calc1 = Double.parseDouble((tokens.get(tokens.indexOf(op) - 1)));
+            double calc2 = Double.parseDouble((tokens.get(tokens.indexOf(op) + 1)));
+            double calc = calc(calc1, calc2, op);
+
+            if (Objects.equals(op, "²")) {
+                tokens.remove(tokens.indexOf(op) - 1);
+                tokens.add(tokens.indexOf(op), String.valueOf(calc));
+                tokens.remove(op);
+            } else {
+                tokens.remove(tokens.indexOf(op) - 1);
+                tokens.remove(tokens.indexOf(op) + 1);
+                tokens.add(tokens.indexOf(op), String.valueOf(calc));
+                tokens.remove(op);
+            }
+
+        }
+    }
+
+    public boolean lastCharIs(char ch) {
+        if (!labelCalc.getText().isEmpty()) {
+            return labelCalc.getText().charAt(labelCalc.getText().length() - 1) == ch;
+        }
+        return false;
     }
 
     private void btn0(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "0");
+        if (lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "0");
+        }
+    }
+
+    private void btn1(ActionEvent e) {
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "1");
+        }
+    }
+
+    private void btn2(ActionEvent e){
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "2");
+        }
     }
 
     private void btn3(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "3");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "3");
+        }
     }
 
     private void btn4(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "4");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "4");
+        }
     }
 
     private void btn5(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "5");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "5");
+        }
     }
 
     private void btn6(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "6");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "6");
+        }
     }
 
     private void btn7(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "7");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "7");
+        }
     }
 
     private void btn8(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "8");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "8");
+        }
     }
 
     private void btn9(ActionEvent e) {
-        labelCalc.setText(labelCalc.getText() + "9");
+        if (!lastCharIs('²')) {
+            labelCalc.setText(labelCalc.getText() + "9");
+        }
     }
 
     private void btnC(ActionEvent e) {
@@ -89,7 +154,7 @@ public class Calc extends JFrame {
 
     private void btnX(ActionEvent e) {
         if (equalsNum()) {
-            labelCalc.setText(labelCalc.getText() + "x");
+            labelCalc.setText(labelCalc.getText() + "*");
         }
     }
 
@@ -103,21 +168,54 @@ public class Calc extends JFrame {
         boolean has = false;
         for (int i = 0; i < labelCalc.getText().length(); i++) {
             char ch = labelCalc.getText().charAt(i);
-            if (ch == ',') {
+            if (ch == '.') {
                 has = true;
             }
             if (ch == '+' || ch == '-' || ch == 'x' || ch == '/') {
                 has = false;
             }
         }
-        if (!has) {
-            labelCalc.setText(labelCalc.getText() + ",");    
+        char ch = labelCalc.getText().charAt(labelCalc.getText().length() - 1);
+        if (!has && ch != '+' && ch != '-' && ch != 'x' && ch != '/' ) {
+            labelCalc.setText(labelCalc.getText() + ".");
         }
         
     }
 
     private void btnCancel(ActionEvent e) {
         labelCalc.setText(labelCalc.getText().substring(0, labelCalc.getText().length() - 1));
+    }
+
+    private void btnPot(ActionEvent e) {
+        if (equalsNum()){
+            labelCalc.setText(labelCalc.getText() + "²");
+        }
+    }
+
+    private void btnEqual(ActionEvent e) {
+        String expression = labelCalc.getText();
+
+        // Lista para armazenar números e operadores
+        List<String> tokens = new ArrayList<>();
+
+        // Expressão regular para capturar números e operadores
+        Pattern pattern = Pattern.compile("\\d+|[-+*/²]");
+        Matcher matcher = pattern.matcher(expression);
+
+        // Adiciona cada número ou operador à lista
+        while (matcher.find()) {
+            tokens.add(matcher.group());
+        }
+
+        // Exibe a lista de tokens
+        whatCalc(tokens, "²");
+        whatCalc(tokens, "*");
+        whatCalc(tokens, "/");
+        whatCalc(tokens, "+");
+        whatCalc(tokens, "-");
+
+        System.out.println(tokens);
+        labelCalc.setText(tokens.getFirst());
     }
 
     private void initComponents() {
@@ -148,6 +246,8 @@ public class Calc extends JFrame {
 
         //======== this ========
         setPreferredSize(new Dimension(400, 500));
+        setTitle("Calculadora");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -188,6 +288,7 @@ public class Calc extends JFrame {
             //---- btnPot ----
             btnPot.setFont(new Font("Inter", Font.BOLD, 16));
             btnPot.setText("x\u00b2");
+            btnPot.addActionListener(e -> btnPot(e));
             panel1.add(btnPot);
 
             //---- btnCE ----
@@ -227,7 +328,7 @@ public class Calc extends JFrame {
             panel1.add(btn9);
 
             //---- btnX ----
-            btnX.setText("x");
+            btnX.setText("*");
             btnX.setFont(new Font("Inter", Font.BOLD, 16));
             btnX.addActionListener(e -> btnX(e));
             panel1.add(btnX);
@@ -293,7 +394,7 @@ public class Calc extends JFrame {
             panel1.add(btn0);
 
             //---- btnDot ----
-            btnDot.setText(",");
+            btnDot.setText(".");
             btnDot.setFont(new Font("Inter", Font.BOLD, 16));
             btnDot.addActionListener(e -> btnDot(e));
             panel1.add(btnDot);
@@ -301,6 +402,7 @@ public class Calc extends JFrame {
             //---- btnEqual ----
             btnEqual.setText("=");
             btnEqual.setFont(new Font("Inter", Font.BOLD, 16));
+            btnEqual.addActionListener(e -> btnEqual(e));
             panel1.add(btnEqual);
         }
         contentPane.add(panel1, BorderLayout.CENTER);
