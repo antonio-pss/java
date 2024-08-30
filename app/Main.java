@@ -2,9 +2,8 @@ package app;
 
 import absModel.AbsForm;
 import model.*;
+import view.Calc;
 import view.SecondWindow;
-import view.Swing;
-import java.time.LocalTime;
 
 public class Main {
     static AbsForm[] form = {new Circle(5), new Circle(2), new Rect(10, 7), new Rect(3, 5), new SubSquare(4)};
@@ -36,7 +35,10 @@ public class Main {
         System.out.println(radioClock);
         */
 
+        Calc calc = new Calc();
+        calc.setVisible(true);
+
         SecondWindow window = new SecondWindow();
-        window.setVisible(true);
+        //window.setVisible(true);
     }
 }
