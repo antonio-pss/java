@@ -1,0 +1,103 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.3" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 300, 250 )
+			"background": new java.awt.Color( 102, 102, 102, 255 )
+			"defaultCloseOperation": 2
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				"background": new java.awt.Color( 51, 51, 51, 255 )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "okButton"
+					"text": "OK"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"font": &Font0 new java.awt.Font( "Arial", 1, 14 )
+					"background": &Color1 new java.awt.Color( 51, 51, 51, 255 )
+					"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color white, 1, true )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "ok", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 85
+					"x": 265
+					"y": 220
+					"height": 35
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txTexto"
+					"font": new java.awt.Font( "Arial", 0, 14 )
+					"toolTipText": "Aqui:"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": new java.awt.Color( 0, 0, 0, 255 )
+					"minimumSize": new java.awt.Dimension( 49, 50 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 245
+					"x": 15
+					"y": 50
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Escreva Abaixo"
+					"font": new java.awt.Font( "Arial", 1, 20 )
+					"horizontalAlignment": 0
+					"background": new java.awt.Color( 51, 51, 51, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 340
+					"x": 15
+					"y": 10
+					"height": 39
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelBtn"
+					"text": "Cancel"
+					"foreground": #Color0
+					"font": #Font0
+					"background": #Color1
+					"border": #LineBorder0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelBtn", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 85
+					"height": 35
+					"x": 170
+					"y": 220
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textAdd"
+						"editable": false
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 15
+					"y": 90
+					"width": 340
+					"height": 120
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "addBtn"
+					"text": "Adicionar"
+					"foreground": #Color0
+					"font": #Font0
+					"background": #Color1
+					"border": #LineBorder0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "add", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 85
+					"height": 35
+					"x": 270
+					"y": 50
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 368
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 0 )
+			"size": new java.awt.Dimension( 370, 300 )
+		} )
+	}
+}

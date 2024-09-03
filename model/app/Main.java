@@ -1,13 +1,11 @@
-package app;
+package model.app;
 
-import absModel.AbsForm;
-import model.Circle;
-import model.Rect;
-import model.SubSquare;
-import view.CadastroCarro;
-import view.Calc;
-
-import javax.swing.*;
+import model.absModel.AbsForm;
+import model.model.Circle;
+import model.model.Rect;
+import model.model.SubSquare;
+import model.view.Calc;
+import model.view.SecondWindow;
 
 public class Main {
     static AbsForm[] form = {new Circle(5), new Circle(2), new Rect(10, 7), new Rect(3, 5), new SubSquare(4)};
@@ -39,7 +37,10 @@ public class Main {
         System.out.println(radioClock);
         */
 
-        CadastroCarro cc = new CadastroCarro();
-        cc.setVisible(true);
+        Calc calc = new Calc();
+        calc.setVisible(true);
+
+        SecondWindow window = new SecondWindow();
+        //window.setVisible(true);
     }
 }

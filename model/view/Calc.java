@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu Aug 29 20:06:13 BRT 2024
  */
 
-package view;
+package model.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,14 +48,8 @@ public class Calc extends JFrame {
     private void whatCalc(List<String> tokens, String op) {
         while(tokens.contains(op)) {
             double calc1 = Double.parseDouble((tokens.get(tokens.indexOf(op) - 1)));
-            double calc2;
-            double calc;
-            if(!Objects.equals(op, "²")) {
-                calc2 = Double.parseDouble((tokens.get(tokens.indexOf(op) + 1)));
-                calc = calc(calc1, calc2, op);
-            } else {
-                calc = calc(calc1, 1, op);
-            }
+            double calc2 = Double.parseDouble((tokens.get(tokens.indexOf(op) + 1)));
+            double calc = calc(calc1, calc2, op);
 
             if (Objects.equals(op, "²")) {
                 tokens.remove(tokens.indexOf(op) - 1);
@@ -205,7 +199,7 @@ public class Calc extends JFrame {
         List<String> tokens = new ArrayList<>();
 
         // Expressão regular para capturar números e operadores
-        Pattern pattern = Pattern.compile("\\d*\\.?\\d+|[-+*/²]");
+        Pattern pattern = Pattern.compile("\\d+|[-+*/²]");
         Matcher matcher = pattern.matcher(expression);
 
         // Adiciona cada número ou operador à lista
@@ -213,6 +207,7 @@ public class Calc extends JFrame {
             tokens.add(matcher.group());
         }
 
+        // Exibe a lista de tokens
         whatCalc(tokens, "²");
         whatCalc(tokens, "*");
         whatCalc(tokens, "/");

@@ -1,0 +1,111 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.3" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridLayout ) {
+			"rows": 2
+		} ) {
+			name: "this"
+			"preferredSize": new java.awt.Dimension( 500, 500 )
+			"$sizePolicy": 1
+			"$locationPolicy": 1
+			"defaultCloseOperation": 3
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panelCadastro"
+				"preferredSize": new java.awt.Dimension( 500, 500 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+					"columns": 2
+					"rows": 4
+					"hgap": 5
+					"vgap": 5
+				} ) {
+					name: "panelCampos"
+					"minimumSize": new java.awt.Dimension( -5, 20 )
+					"preferredSize": new java.awt.Dimension( -5, 160 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelModelo"
+						"text": "Modelo"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelMarca"
+						"text": "Marca"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfModelo"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfMarca"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelCor"
+						"text": "Cor"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "Ano"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfCor"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfAno"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) {
+					"alignment": 2
+				} ) {
+					name: "panelButtons"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnSalvar"
+						"text": "Salvar"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSalvar", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnCancelar"
+						"text": "Cancelar"
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panelLista"
+				"preferredSize": new java.awt.Dimension( 500, 500 )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableItens"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+							add( "Modelo" )
+							add( "Marca" )
+							add( "Cor" )
+							add( "Ano" )
+						}, new java.util.Vector {
+							add( class java.lang.Object )
+							add( class java.lang.Object )
+							add( class java.lang.Object )
+							add( class java.lang.Object )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 330, 45 )
+			"size": new java.awt.Dimension( 445, 465 )
+		} )
+	}
+}
